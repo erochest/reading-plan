@@ -1,4 +1,7 @@
 
+// TODO: Read a bunch of things I'm reading from a TOML file and print out what I need to read today.
+// TODO: Setting to explude one or more days of the week from the plan.
+
 use chrono::prelude::*;
 use clap::Parser;
 use clap_verbosity_flag::Verbosity;
