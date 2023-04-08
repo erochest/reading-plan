@@ -148,4 +148,36 @@ mod tests {
             })
         );
     }
+
+    #[test]
+    fn when_two_days_with_odd_pages_then_unequally_spreads_reading_over_days() {
+        let page_count = 11;
+        let start_page = 4;
+        let start_date = NaiveDate::from_ymd_opt(2020, 1, 1).unwrap();
+        let end_date = NaiveDate::from_ymd_opt(2020, 1, 2).unwrap();
+
+        let mut result = read_pages(start_date, start_page, end_date, page_count);
+        let first = result.next();
+        let second = result.next();
+
+        assert_eq!(
+            first,
+            Some(ReadingDay {
+                start_page: 4,
+                raw_page_count: 3.5,
+                page_count: 4,
+                date: start_date,
+            })
+        );
+        assert_eq!(
+            second,
+            Some(ReadingDay {
+                start_page: 8,
+                raw_page_count: 3.0,
+                page_count: 3,
+                date: start_date.succ_opt().unwrap(),
+            })
+        );
+
+    }
 }
