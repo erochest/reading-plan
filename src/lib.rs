@@ -117,4 +117,35 @@ mod tests {
             })
         );
     }
+
+    #[test]
+    fn when_two_days_then_splits_the_reading_over_days() {
+        let page_count = 10;
+        let start_page = 4;
+        let start_date = NaiveDate::from_ymd_opt(2020, 1, 1).unwrap();
+        let end_date = NaiveDate::from_ymd_opt(2020, 1, 2).unwrap();
+
+        let mut result = read_pages(start_date, start_page, end_date, page_count);
+        let first = result.next();
+        let second = result.next();
+
+        assert_eq!(
+            first,
+            Some(ReadingDay {
+                start_page: 4,
+                raw_page_count: 3.0,
+                page_count: 3,
+                date: start_date,
+            })
+        );
+        assert_eq!(
+            second,
+            Some(ReadingDay {
+                start_page: 7,
+                raw_page_count: 3.0,
+                page_count: 3,
+                date: start_date.succ_opt().unwrap(),
+            })
+        );
+    }
 }
