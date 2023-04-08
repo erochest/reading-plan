@@ -4,9 +4,7 @@ use clap_verbosity_flag::Verbosity;
 use env_logger;
 use human_panic::setup_panic;
 
-mod error;
-
-use error::Result;
+use reading_plan::error::Result;
 
 fn main() -> Result<()> {
     setup_panic!();
