@@ -51,7 +51,12 @@ impl Iterator for ReadPages {
     }
 }
 
-pub fn read_pages(start_date: NaiveDate, start_page: u32, end_date: NaiveDate, end_page: u32) -> impl Iterator<Item = ReadingDay> {
+pub fn read_pages(
+    start_date: NaiveDate,
+    start_page: u32,
+    end_date: NaiveDate,
+    end_page: u32,
+) -> impl Iterator<Item = ReadingDay> {
     ReadPages {
         start_date,
         start_page,
@@ -64,8 +69,8 @@ pub fn read_pages(start_date: NaiveDate, start_page: u32, end_date: NaiveDate, e
 
 #[cfg(test)]
 mod tests {
-    use chrono::NaiveDate;
     use super::*;
+    use chrono::NaiveDate;
     use pretty_assertions::assert_eq;
 
     #[test]
@@ -102,11 +107,14 @@ mod tests {
         let mut result = read_pages(start_date, start_page, end_date, page_count);
         let result = result.next();
 
-        assert_eq!(result, Some(ReadingDay {
-            start_page: 5,
-            raw_page_count: 5.0,
-            page_count: 5,
-            date: start_date,
-        }));
+        assert_eq!(
+            result,
+            Some(ReadingDay {
+                start_page: 5,
+                raw_page_count: 5.0,
+                page_count: 5,
+                date: start_date,
+            })
+        );
     }
 }
