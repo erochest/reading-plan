@@ -14,13 +14,15 @@ confy = "*"
 env_logger = "*"
 human-panic = "*"
 log = "*"
+serde = { version = "1.0.159", features = ["derive"] }
+serde_json = "1.0.95"
 
 [dev-dependencies]
 assert_cmd = "*"
 # assert_fs = "*"
 # dir-diff = "*"
 # duct = "*"
-# predicates = "*"
+predicates = "*"
 pretty_assertions = "*"
 # rexpect = "*"
 spectral = "*"

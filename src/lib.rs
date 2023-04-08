@@ -3,8 +3,9 @@ pub mod error;
 use std::iter::Iterator;
 
 use chrono::NaiveDate;
+use serde::{Deserialize, Serialize};
 
-#[derive(Debug, PartialEq, Clone, Copy)]
+#[derive(Debug, PartialEq, Clone, Copy, Deserialize, Serialize)]
 pub struct ReadingDay {
     pub start_page: u32,
     pub raw_page_count: f32,
